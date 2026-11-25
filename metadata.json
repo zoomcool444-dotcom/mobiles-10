@@ -1,0 +1,6 @@
+{
+  "name": "Android Rack 10",
+  "description": "Real-time control and monitoring console for 10 physical USB Android smartphones using ADB, scrcpy, and Appium on Kali Linux.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

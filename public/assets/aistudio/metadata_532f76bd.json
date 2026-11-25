@@ -1,0 +1,6 @@
+{
+  "name": "UNIVERSAL TASK BOT",
+  "description": "Python Selenium website testing bot and authorized demo task automation workbench.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
