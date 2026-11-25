@@ -103,7 +103,7 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row bg-[#F4F6F8] dark:bg-[#0B0F17] text-slate-900 dark:text-slate-100">
+    <div className="min-h-screen flex flex-col lg:flex-row bg-[#F4F6F8] dark:bg-[#0B0F17] text-slate-900 dark:text-slate-100 overflow-x-hidden">
       <Sidebar
         activeView={activeView}
         onSelectView={setActiveView}
@@ -130,7 +130,7 @@ export default function App() {
           scanning={Boolean(fleetBusy)}
         />
 
-        <main className="flex-1 p-3 sm:p-4 space-y-4 w-full">
+        <main className="flex-1 p-2.5 sm:p-4 space-y-3 sm:space-y-4 w-full">
           {/* Truthful Bridge / Hardware Status Notice (only in hardware mode when bridge is offline) */}
           {!loading && diagnostics.mode === 'hardware' && !diagnostics.pythonBridgeConnected && (
             <div className="bg-white dark:bg-slate-900 border border-amber-300 dark:border-amber-800/70 rounded-xl px-4 py-3 flex flex-wrap items-center justify-between gap-3">
@@ -189,6 +189,25 @@ export default function App() {
             </div>
           )}
 
+          {(activeView === 'rack' || activeView === 'matrix') && (
+            <div className="flex md:hidden items-center gap-1 p-1 bg-slate-200/70 dark:bg-slate-800 rounded-lg overflow-x-auto">
+              {(['all', 'online', 'offline', 'mirroring'] as const).map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => setFilter(item)}
+                  className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md capitalize whitespace-nowrap ${
+                    filter === item
+                      ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100'
+                      : 'text-slate-600 dark:text-slate-400'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+          )}
+
           {activeView === 'rack' && (
             <>
               <FleetToolbar
@@ -206,24 +225,6 @@ export default function App() {
                 onStopAllBots={stopAllBots}
                 onFleetAction={runFleetAction}
               />
-
-              {/* Mobile Filter Bar */}
-              <div className="flex md:hidden items-center gap-1 p-1 bg-slate-200/70 dark:bg-slate-800 rounded-lg overflow-x-auto">
-                {(['all', 'online', 'offline', 'mirroring'] as const).map((item) => (
-                  <button
-                    key={item}
-                    type="button"
-                    onClick={() => setFilter(item)}
-                    className={`flex-1 px-3 py-1.5 text-xs font-medium rounded-md capitalize whitespace-nowrap ${
-                      filter === item
-                        ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100'
-                        : 'text-slate-600 dark:text-slate-400'
-                    }`}
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
 
               {loading ? (
                 <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">

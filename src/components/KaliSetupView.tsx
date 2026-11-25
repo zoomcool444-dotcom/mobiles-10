@@ -59,8 +59,8 @@ adb devices -l`;
   return (
     <div className="space-y-6 max-w-4xl">
       {/* Operating Mode Switcher */}
-      <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 flex flex-wrap items-center justify-between gap-4">
-        <div>
+      <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4">
+        <div className="min-w-0">
           <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100">
             Device Fleet Operating Mode
           </h2>
@@ -69,22 +69,22 @@ adb devices -l`;
             physical devices via the Kali Linux Python Flask service.
           </p>
         </div>
-        <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-lg shrink-0">
+        <div className="w-full sm:w-auto grid grid-cols-2 sm:flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-lg shrink-0">
           <button
             type="button"
             onClick={() => onSetMode('virtual')}
-            className={`px-3.5 py-2 text-xs font-medium rounded-md transition-colors ${
+            className={`px-3 sm:px-3.5 py-2 text-xs font-medium rounded-md transition-colors text-center ${
               diagnostics.mode === 'virtual'
                 ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
             }`}
           >
-            Virtual Android Fleet ({deviceCount})
+            Virtual Fleet ({deviceCount})
           </button>
           <button
             type="button"
             onClick={() => onSetMode('hardware')}
-            className={`px-3.5 py-2 text-xs font-medium rounded-md transition-colors ${
+            className={`px-3 sm:px-3.5 py-2 text-xs font-medium rounded-md transition-colors text-center ${
               diagnostics.mode === 'hardware'
                 ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100'
@@ -96,11 +96,11 @@ adb devices -l`;
       </section>
 
       {/* Virtual Fleet Size Scaling (10, 20, 30, 40, 50, 100) */}
-      <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 space-y-4">
+      <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 space-y-4">
         <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
+          <div className="min-w-0">
             <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-blue-600" />
+              <Layers className="w-4 h-4 text-blue-600 shrink-0" />
               <span>Virtual Mobile Fleet Capacity (1 – 100 Phones)</span>
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 mt-0.5">
@@ -113,7 +113,7 @@ adb devices -l`;
           </span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2">
           {FLEET_PRESETS.map((preset) => (
             <button
               key={preset}
@@ -125,7 +125,7 @@ adb devices -l`;
                 await onSetVirtualFleetCount(preset);
                 setScaling(false);
               }}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold font-mono tabular-nums border transition-colors disabled:opacity-50 ${
+              className={`px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold font-mono tabular-nums border transition-colors disabled:opacity-50 ${
                 deviceCount === preset
                   ? 'bg-blue-600 border-blue-600 text-white'
                   : 'border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -255,10 +255,10 @@ adb devices -l`;
       </section>
 
       {/* Kali Linux Terminal Setup */}
-      <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 space-y-3">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-slate-500" />
+      <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2 min-w-0">
+            <Terminal className="w-4 h-4 text-slate-500 shrink-0" />
             <h3 className="font-display text-sm font-semibold text-slate-900 dark:text-slate-100">
               Kali Linux Hardware Service Setup
             </h3>
@@ -266,7 +266,7 @@ adb devices -l`;
           <button
             type="button"
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 shrink-0"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copied ? 'Copied' : 'Copy Commands'}</span>

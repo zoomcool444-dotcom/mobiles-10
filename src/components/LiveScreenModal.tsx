@@ -132,19 +132,19 @@ export function LiveScreenModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-slate-950/75 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-slate-950/75 flex items-center justify-center p-2 sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-label={`${device.name} Live Screen`}
     >
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl w-full max-w-4xl max-h-[92vh] overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl w-full max-w-4xl max-h-[96dvh] sm:max-h-[92vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+        <div className="px-3.5 py-2.5 sm:px-5 sm:py-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
           <div className="min-w-0">
-            <h2 className="font-display text-base font-semibold text-slate-900 dark:text-slate-100 truncate">
+            <h2 className="font-display text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 truncate">
               {device.name} — {device.model}
             </h2>
-            <p className="font-mono text-xs text-slate-500 dark:text-slate-400 truncate tabular-nums">
+            <p className="font-mono text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 truncate tabular-nums">
               {device.serial || `Slot ${device.slotId}`} ·{' '}
               {isOnline ? `Android ${device.androidVersion} · ${device.resolution}` : 'Offline'} ·{' '}
               {device.mirrorStatus === 'streaming' ? `${device.fps} fps` : 'scrcpy standby'}
@@ -154,14 +154,14 @@ export function LiveScreenModal({
             type="button"
             onClick={onClose}
             aria-label="Close live screen modal"
-            className="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 shrink-0"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Body */}
-        <div className="p-5 overflow-y-auto grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+        <div className="p-3 sm:p-5 overflow-y-auto grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-start">
           {/* Interactive Screen Viewport */}
           <div className="md:col-span-5 flex flex-col items-center">
             <div
@@ -174,7 +174,7 @@ export function LiveScreenModal({
                   ? 'Click anywhere on screen to tap'
                   : 'Connect phone to stream live screen'
               }
-              className={`w-full max-w-[330px] aspect-[9/16] rounded-xl bg-slate-950 border border-slate-800 overflow-hidden relative flex items-center justify-center select-none ${
+              className={`w-full max-w-[250px] sm:max-w-[330px] aspect-[9/16] rounded-xl bg-slate-950 border border-slate-800 overflow-hidden relative flex items-center justify-center select-none ${
                 !device.virtualState?.isVirtual && isOnline ? 'cursor-crosshair' : 'cursor-default'
               }`}
             >
@@ -219,16 +219,16 @@ export function LiveScreenModal({
                 </div>
               )}
             </div>
-            <div className="mt-2 w-full max-w-[330px] flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 tabular-nums">
+            <div className="mt-2 w-full max-w-[250px] sm:max-w-[330px] flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 tabular-nums">
               <span>{device.virtualState?.isVirtual ? 'Interactive Android 14' : isOnline ? 'Click screen to tap' : 'Waiting for device'}</span>
               <span>{lastTap ? `Last tap: ${lastTap.x}, ${lastTap.y}` : dims.width + '×' + dims.height}</span>
             </div>
           </div>
 
           {/* Remote Hardware Controls */}
-          <div className="md:col-span-7 space-y-5">
+          <div className="md:col-span-7 space-y-5 min-w-0">
             {!isOnline && device.virtualState?.isVirtual && (
-              <div className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 flex items-center justify-between gap-3">
+              <div className="p-3.5 sm:p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 flex flex-wrap items-center justify-between gap-3">
                 <div className="text-xs">
                   <div className="font-semibold text-slate-900 dark:text-slate-100">
                     {device.name} is Disconnected
@@ -277,7 +277,7 @@ export function LiveScreenModal({
                     placeholder="Phone IP:Port (e.g. 192.168.1.101:5555)"
                     className="w-full px-3 py-2 text-xs font-mono rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
                   />
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <input
                       type="text"
                       value={pairTarget}

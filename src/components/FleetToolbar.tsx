@@ -61,15 +61,15 @@ export function FleetToolbar({
   return (
     <section
       aria-label="Multi-Device Fleet Controls"
-      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 space-y-3"
+      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 sm:p-4 space-y-3"
     >
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={onConnectAll}
             disabled={Boolean(fleetBusy)}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 disabled:opacity-50 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-lg text-xs font-medium bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 disabled:opacity-50 transition-colors whitespace-nowrap shrink-0"
           >
             <PlugZap className="w-3.5 h-3.5" />
             <span>Connect All Devices</span>
@@ -97,14 +97,14 @@ export function FleetToolbar({
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           <button
             type="button"
             onClick={() =>
               onFleetAction('start', selectedIds.length > 0 ? selectedIds : undefined)
             }
             disabled={Boolean(fleetBusy) || onlineCount === 0}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
           >
             <Play className="w-3.5 h-3.5" />
             <span>Start ({targetLabel})</span>
@@ -116,7 +116,7 @@ export function FleetToolbar({
               onFleetAction('stop', selectedIds.length > 0 ? selectedIds : undefined)
             }
             disabled={Boolean(fleetBusy) || onlineCount === 0}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
           >
             <Square className="w-3.5 h-3.5" />
             <span>Stop</span>
@@ -128,7 +128,7 @@ export function FleetToolbar({
               onFleetAction('home', selectedIds.length > 0 ? selectedIds : undefined)
             }
             disabled={Boolean(fleetBusy) || onlineCount === 0}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
           >
             <Home className="w-3.5 h-3.5" />
             <span>Go Home</span>
@@ -140,7 +140,7 @@ export function FleetToolbar({
               onFleetAction('screenshot', selectedIds.length > 0 ? selectedIds : undefined)
             }
             disabled={Boolean(fleetBusy) || onlineCount === 0}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
+            className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-lg text-xs font-medium border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 transition-colors whitespace-nowrap shrink-0"
           >
             <Camera className="w-3.5 h-3.5" />
             <span>Screenshot</span>
@@ -184,7 +184,7 @@ export function FleetToolbar({
         <label htmlFor="fleet-url-input" className="sr-only">
           Authorized Test URL for Fleet
         </label>
-        <div className="relative flex-1">
+        <div className="relative flex-1 min-w-0">
           <Globe className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             id="fleet-url-input"
@@ -192,7 +192,7 @@ export function FleetToolbar({
             value={urlInput}
             onChange={(e) => setUrlInput(e.target.value)}
             placeholder="Search or URL (e.g. wikipedia.org or app.apk)"
-            className="w-full pl-9 pr-3 py-2 text-xs font-mono rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full pl-9 pr-3 py-2 text-sm sm:text-xs font-mono rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
         </div>
         <button

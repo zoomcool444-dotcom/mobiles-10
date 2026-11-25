@@ -240,9 +240,9 @@ export const DeviceCard = memo(function DeviceCard({
           </div>
         </div>
       ) : (
-        <div className="p-4 flex gap-4 items-stretch">
+        <div className="p-2.5 sm:p-4 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch">
           {/* 9:16 Real-Time Screen Viewport (Hardware mode) */}
-          <div className="w-28 sm:w-32 shrink-0 flex flex-col">
+          <div className="w-24 mx-auto sm:mx-0 sm:w-28 md:w-32 shrink-0 flex flex-col">
             <button
               type="button"
               onClick={() => onViewLiveScreen(device)}
@@ -342,7 +342,7 @@ export const DeviceCard = memo(function DeviceCard({
       {urlBarOpen && (
         <form
           onSubmit={handleOpenUrlSubmit}
-          className="px-4 py-2.5 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 flex items-center gap-2"
+          className="px-2.5 sm:px-4 py-2.5 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 flex items-center gap-1.5 sm:gap-2"
         >
           <input
             type="text"
@@ -350,12 +350,12 @@ export const DeviceCard = memo(function DeviceCard({
             onChange={(e) => setUrlValue(e.target.value)}
             placeholder="Search or URL (e.g. wikipedia.org)"
             aria-label={`URL to open on ${device.name}`}
-            className="flex-1 min-w-0 px-2.5 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="flex-1 min-w-0 px-2 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <button
             type="submit"
             disabled={!isOnline || Boolean(busyAction)}
-            className="px-3 py-1.5 rounded-md text-xs font-medium bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-40 whitespace-nowrap shrink-0"
+            className="px-2.5 sm:px-3 py-1.5 rounded-md text-xs font-medium bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-40 whitespace-nowrap shrink-0"
           >
             Go
           </button>
@@ -366,10 +366,10 @@ export const DeviceCard = memo(function DeviceCard({
       {wifiPanelOpen && (
         <form
           onSubmit={handleWifiConnectSubmit}
-          className="px-4 py-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-2"
+          className="px-2.5 sm:px-4 py-2.5 sm:py-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 space-y-2"
         >
-          <div className="flex items-center justify-between text-[11px] font-medium text-slate-700 dark:text-slate-300">
-            <span>Connect Phone via Wi-Fi</span>
+          <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] font-medium text-slate-700 dark:text-slate-300">
+            <span>Connect via Wi-Fi</span>
             <button
               type="button"
               onClick={() => {
@@ -385,18 +385,18 @@ export const DeviceCard = memo(function DeviceCard({
             type="text"
             value={wifiTarget}
             onChange={(e) => setWifiTarget(e.target.value)}
-            placeholder="Phone IP:Port (e.g. 192.168.1.101:5555)"
+            placeholder="Phone IP:Port (192.168.1.101:5555)"
             aria-label={`Wi-Fi IP and port for ${device.name}`}
-            className="w-full px-2.5 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-2 py-1.5 text-xs font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
-          <div className="grid grid-cols-2 gap-1.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
             <input
               type="text"
               value={pairTarget}
               onChange={(e) => setPairTarget(e.target.value)}
               placeholder="Pair IP:Port (opt)"
               aria-label={`Pairing IP and port for ${device.name}`}
-              className="px-2 py-1.5 text-[11px] font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-2 py-1.5 text-[11px] font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
             <input
               type="text"
@@ -404,10 +404,10 @@ export const DeviceCard = memo(function DeviceCard({
               onChange={(e) => setPairingCode(e.target.value)}
               placeholder="6-digit code (opt)"
               aria-label={`Pairing code for ${device.name}`}
-              className="px-2 py-1.5 text-[11px] font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-2 py-1.5 text-[11px] font-mono rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
             />
           </div>
-          <div className="flex justify-end gap-1.5">
+          <div className="flex flex-wrap justify-end gap-1.5">
             <button
               type="button"
               onClick={() => setWifiPanelOpen(false)}
@@ -436,7 +436,7 @@ export const DeviceCard = memo(function DeviceCard({
               aria-label={`Disconnect ${device.name}`}
               onClick={() => onDisconnect(device.slotId)}
               disabled={Boolean(busyAction)}
-              className="inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
+              className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
             >
               <Unplug className="w-3 h-3" />
             </button>
@@ -451,7 +451,7 @@ export const DeviceCard = memo(function DeviceCard({
                   : setWifiPanelOpen((prev) => !prev)
               }
               disabled={Boolean(busyAction)}
-              className={`inline-flex items-center justify-center p-1.5 rounded transition-colors disabled:opacity-40 ${
+              className={`inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded transition-colors disabled:opacity-40 ${
                 wifiPanelOpen
                   ? 'bg-blue-600 text-white'
                   : 'bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 hover:bg-slate-800'
@@ -468,7 +468,7 @@ export const DeviceCard = memo(function DeviceCard({
               aria-label={`Stop ${device.name}`}
               onClick={() => onStopDevice(device.slotId)}
               disabled={!isOnline || Boolean(busyAction)}
-              className="inline-flex items-center justify-center p-1.5 rounded border border-rose-200 dark:border-rose-900/60 text-rose-700 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 disabled:opacity-40"
+              className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-rose-200 dark:border-rose-900/60 text-rose-700 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 disabled:opacity-40"
             >
               <Square className="w-3 h-3" />
             </button>
@@ -479,7 +479,7 @@ export const DeviceCard = memo(function DeviceCard({
               aria-label={`Start ${device.name}`}
               onClick={() => onStartDevice(device.slotId)}
               disabled={!isOnline || Boolean(busyAction)}
-              className="inline-flex items-center justify-center p-1.5 rounded border border-emerald-200 dark:border-emerald-900/60 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 disabled:opacity-40"
+              className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-emerald-200 dark:border-emerald-900/60 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 disabled:opacity-40"
             >
               <Play className="w-3 h-3" />
             </button>
@@ -491,7 +491,7 @@ export const DeviceCard = memo(function DeviceCard({
             aria-label={`Open browser on ${device.name}`}
             onClick={() => onOpenBrowser(device.slotId)}
             disabled={!isOnline || Boolean(busyAction)}
-            className="inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
+            className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
           >
             <Globe className="w-3 h-3" />
           </button>
@@ -501,7 +501,7 @@ export const DeviceCard = memo(function DeviceCard({
             title="Expand Live Screen"
             aria-label={`Expand ${device.name}`}
             onClick={() => onViewLiveScreen(device)}
-            className="inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
+            className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800"
           >
             <Maximize2 className="w-3 h-3" />
           </button>
@@ -512,7 +512,7 @@ export const DeviceCard = memo(function DeviceCard({
             aria-label={`Open URL on ${device.name}`}
             onClick={() => setUrlBarOpen((prev) => !prev)}
             disabled={!isOnline || Boolean(busyAction)}
-            className={`inline-flex items-center justify-center p-1.5 rounded border transition-colors disabled:opacity-40 ${
+            className={`inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border transition-colors disabled:opacity-40 ${
               urlBarOpen
                 ? 'border-blue-600 text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40'
                 : 'border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -527,7 +527,7 @@ export const DeviceCard = memo(function DeviceCard({
             aria-label={`Reload ${device.name}`}
             onClick={() => onReloadPage(device.slotId)}
             disabled={!isOnline || Boolean(busyAction)}
-            className="inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
+            className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
           >
             <RotateCw className="w-3 h-3" />
           </button>
@@ -538,7 +538,7 @@ export const DeviceCard = memo(function DeviceCard({
             aria-label={`Go back on ${device.name}`}
             onClick={() => onGoBack(device.slotId)}
             disabled={!isOnline || Boolean(busyAction)}
-            className="inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
+            className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
           >
             <ArrowLeft className="w-3 h-3" />
           </button>
@@ -549,7 +549,7 @@ export const DeviceCard = memo(function DeviceCard({
             aria-label={`Go home on ${device.name}`}
             onClick={() => onGoHome(device.slotId)}
             disabled={!isOnline || Boolean(busyAction)}
-            className="inline-flex items-center justify-center p-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
+            className="inline-flex items-center justify-center py-2 sm:py-1.5 px-1.5 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40"
           >
             <Home className="w-3 h-3" />
           </button>
@@ -563,7 +563,7 @@ export const DeviceCard = memo(function DeviceCard({
               onClick={() => onToggleBot(device.slotId)}
               disabled={!isOnline}
               title={botState ? `Running #${botState.runs}: ${botState.status}` : 'Start QA Real Bot'}
-              className={`w-full inline-flex items-center justify-center gap-1 px-2 py-1 rounded text-[10px] font-medium transition-colors disabled:opacity-40 whitespace-nowrap ${
+              className={`w-full inline-flex items-center justify-center gap-1 px-2 py-1.5 sm:py-1 rounded text-[10px] font-medium transition-colors disabled:opacity-40 whitespace-nowrap ${
                 botState
                   ? 'bg-rose-600 hover:bg-rose-700 text-white'
                   : 'bg-cyan-600 hover:bg-cyan-700 text-white'
@@ -578,7 +578,7 @@ export const DeviceCard = memo(function DeviceCard({
               aria-label={`Take screenshot of ${device.name}`}
               onClick={() => onTakeScreenshot(device.slotId)}
               disabled={!isOnline || Boolean(busyAction)}
-              className="inline-flex items-center justify-center p-1 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 shrink-0"
+              className="inline-flex items-center justify-center p-1.5 sm:p-1 rounded border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 disabled:opacity-40 shrink-0"
             >
               <Camera className="w-3 h-3" />
             </button>
